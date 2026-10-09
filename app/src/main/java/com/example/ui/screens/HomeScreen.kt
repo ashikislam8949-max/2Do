@@ -93,8 +93,8 @@ fun HomeScreen(
           .background(
             brush = Brush.verticalGradient(
               colors = listOf(
-                MaterialTheme.colorScheme.primary,
-                MaterialTheme.colorScheme.primaryContainer
+                Color(0xFF12324A),
+                Color(0xFF0D9488)
               )
             )
           )
@@ -129,7 +129,7 @@ fun HomeScreen(
               color = Color(0xFF166534)
             ) {
               Text(
-                text = "🇸🇦 KSA",
+                text = "🇸🇦 SAUDI",
                 style = MaterialTheme.typography.labelSmall,
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
@@ -200,7 +200,21 @@ fun HomeScreen(
           }
         }
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Text(
+          text = if (isArabic) "خدمات أعمالك، ببساطة." else "Business services, made simple.",
+          style = MaterialTheme.typography.titleLarge,
+          color = Color.White,
+          fontWeight = FontWeight.Bold
+        )
+        Text(
+          text = if (isArabic) "حلول الأعمال والتقنية والامتثال في مكان واحد." else "Business, technology, and compliance in one place.",
+          style = MaterialTheme.typography.bodySmall,
+          color = Color.White.copy(alpha = 0.82f)
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
 
         // Search Bar Bar in Hero
         OutlinedCard(
@@ -223,7 +237,7 @@ fun HomeScreen(
             )
             Spacer(modifier = Modifier.width(12.dp))
             Text(
-              text = if (isArabic) "البحث عن خدمات وزارة الاستثمار، السجل التجاري، زاتكا، مقيم..." else "Search MISA, CR, ZATCA, Muqeem, Cloud...",
+              text = if (isArabic) "ابحث عن خدمات الأعمال والتقنية..." else "Search business, IT, and government services...",
               style = MaterialTheme.typography.bodyMedium,
               color = MaterialTheme.colorScheme.onSurfaceVariant
             )

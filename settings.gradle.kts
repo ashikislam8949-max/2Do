@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "BBCI"
+rootProject.name = "2Do Tech"
 
 include(":app")

@@ -117,25 +117,12 @@ fun HomeScreen(
               Icon(
                 imageVector = Icons.Default.Menu,
                 contentDescription = if (isArabic) "فتح قائمة الفئات" else "Open Categories Drawer",
-                tint = MaterialTheme.colorScheme.onPrimary,
+                tint = Color.White,
                 modifier = Modifier.size(28.dp)
               )
             }
 
-            TwoDoTechLogo(width = 130, height = 65)
-
-            Surface(
-              shape = RoundedCornerShape(4.dp),
-              color = Color(0xFF166534)
-            ) {
-              Text(
-                text = "🇸🇦 SAUDI",
-                style = MaterialTheme.typography.labelSmall,
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
-              )
-            }
+            TwoDoTechLogo(width = 110, height = 60)
           }
 
           // Top Action Buttons (Language Toggle, AI Chat, Search)
@@ -155,13 +142,13 @@ fun HomeScreen(
                 Icon(
                   imageVector = Icons.Default.Language,
                   contentDescription = "Language",
-                  tint = MaterialTheme.colorScheme.onPrimary,
+                  tint = Color.White,
                   modifier = Modifier.size(14.dp)
                 )
                 Spacer(modifier = Modifier.width(3.dp))
                 Text(
                   text = if (isArabic) "EN" else "عربي",
-                  color = MaterialTheme.colorScheme.onPrimary,
+                  color = Color.White,
                   fontWeight = FontWeight.Bold,
                   style = MaterialTheme.typography.labelSmall
                 )
@@ -177,7 +164,7 @@ fun HomeScreen(
                 Icon(
                   imageVector = Icons.Default.AutoAwesome,
                   contentDescription = "Gemini AI Chat",
-                  tint = MaterialTheme.colorScheme.onPrimary,
+                  tint = Color.White,
                   modifier = Modifier.size(20.dp)
                 )
               }
@@ -192,7 +179,7 @@ fun HomeScreen(
                 Icon(
                   imageVector = Icons.Default.Search,
                   contentDescription = "Search",
-                  tint = MaterialTheme.colorScheme.onPrimary,
+                  tint = Color.White,
                   modifier = Modifier.size(20.dp)
                 )
               }

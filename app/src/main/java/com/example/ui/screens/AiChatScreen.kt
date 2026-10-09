@@ -44,7 +44,7 @@ fun AiChatScreen(
   val chatMessages = remember {
     mutableStateListOf(
       ChatMessage(
-        text = "Hello! I am your BBCI GovTech AI Assistant powered by Gemini. How can I assist you today with Saudi government services, ZATCA e-invoicing, Qiwa permits, or company licensing?",
+        text = "Hello! I am your 2Do Tech AI Assistant powered by Gemini. How can I assist you today with Saudi business services, ZATCA e-invoicing, Qiwa permits, or company licensing?",
         isUser = false
       )
     )
@@ -97,7 +97,7 @@ fun AiChatScreen(
               }
             }
             Column {
-              Text("BBCI GovTech AI Assistant", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+              Text("2Do Tech AI Assistant", fontWeight = FontWeight.Bold, fontSize = 16.sp)
               Text("Powered by Gemini", fontSize = 11.sp, color = MaterialTheme.colorScheme.primary)
             }
           }

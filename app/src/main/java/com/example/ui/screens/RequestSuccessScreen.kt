@@ -57,7 +57,7 @@ fun RequestSuccessScreen(
       Spacer(modifier = Modifier.height(8.dp))
 
       Text(
-        text = "Your application has been successfully registered with BBCI Gateway. Request ID: $requestId. Our government relations & IT specialists are processing your request.",
+        text = "Your application has been successfully registered with 2Do Tech. Request ID: $requestId. Our business services & IT specialists are processing your request.",
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         textAlign = TextAlign.Center
@@ -78,7 +78,7 @@ fun RequestSuccessScreen(
         onClick = onGoHome,
         modifier = Modifier.fillMaxWidth().height(50.dp)
       ) {
-        Text("Back to Gateway Home")
+        Text("Back to Home")
       }
     }
   }

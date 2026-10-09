@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun BBCILogoView(
+fun TwoDoTechLogo(
     modifier: Modifier = Modifier,
     width: Int = 180,
     height: Int = 85

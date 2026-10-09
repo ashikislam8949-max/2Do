@@ -19,7 +19,7 @@ object BiometricHelper {
   fun authenticate(
     activity: FragmentActivity,
     title: String = "Biometric Authentication",
-    subtitle: String = "Verify your identity for BBCI Enterprise Portal",
+    subtitle: String = "Verify your identity for the 2Do Tech Business Portal",
     onSuccess: () -> Unit,
     onError: (String) -> Unit
   ) {

@@ -27,7 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.*
-import com.example.ui.components.BBCILogoView
+import com.example.ui.components.TwoDoTechLogo
 import com.example.ui.components.CategoryTab
 import com.example.ui.components.CategoryTabBar
 import com.example.ui.components.UsageAnalyticsSection
@@ -70,7 +70,7 @@ fun HomeScreen(
     if (granted) {
       NotificationHelper.sendPushNotification(
         context,
-        "🔔 BBCI Gov & Iqama Alerts Enabled",
+        "🔔 2Do Tech Gov & Iqama Alerts Enabled",
         "You will now receive push notifications for Iqama expiry, Muqeem status updates, and ZATCA announcements."
       )
       notificationStatusMsg = "Push notifications enabled & test alert sent!"
@@ -122,7 +122,7 @@ fun HomeScreen(
               )
             }
 
-            BBCILogoView(width = 130, height = 65)
+            TwoDoTechLogo(width = 130, height = 65)
 
             Surface(
               shape = RoundedCornerShape(4.dp),
@@ -500,7 +500,7 @@ fun HomeScreen(
               } else {
                 NotificationHelper.sendPushNotification(
                   context,
-                  "🔔 BBCI Gov & Iqama Alerts",
+                  "🔔 2Do Tech Gov & Iqama Alerts",
                   "Test Alert: All your documents are verified and compliant."
                 )
                 notificationStatusMsg = "Test alert sent!"

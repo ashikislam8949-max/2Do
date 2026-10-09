@@ -22,7 +22,7 @@ class ServiceRepository(private val db: AppDatabase) {
           imageUrl = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80",
           rating = 4.9,
           reviewCount = 342,
-          description = "Official Ministry of Commerce (MC) Commercial Registration renewal, activity additions, and branch management via Saudi Business Center (SBC) integrated with Lahint GovTech infrastructure.",
+          description = "Commercial Registration renewal, activity additions, and branch management through the Saudi Business Center (SBC), with guided support from 2Do Tech.",
           requirements = "1. Active National Unified Number (700xxx)\n2. Chamber of Commerce Membership\n3. ZATCA Tax Certificate",
           isFeatured = true,
           isPopularGov = true
@@ -104,7 +104,7 @@ class ServiceRepository(private val db: AppDatabase) {
         ),
         ServiceEntity(
           id = "s7",
-          title = "Lahint AI-Powered GOSI Social Insurance Automation",
+          title = "2Do Tech Assisted GOSI Social Insurance Automation",
           category = "Government Services",
           fee = 400.00,
           governmentFee = 0.00,
@@ -112,7 +112,7 @@ class ServiceRepository(private val db: AppDatabase) {
           imageUrl = "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80",
           rating = 4.9,
           reviewCount = 215,
-          description = "Integrated Lahint GovTech automated social insurance processing for employee registrations, wage updates, and GOSI certificate issuance.",
+          description = "Guided social insurance processing for employee registrations, wage updates, and GOSI certificate issuance with 2Do Tech.",
           requirements = "1. Establishment GOSI Number\n2. Employee National ID / Iqama\n3. Wage Details",
           isFeatured = true,
           isPopularGov = true

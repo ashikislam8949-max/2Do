@@ -27,7 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.*
-import com.example.ui.components.BBCILogoView
+import com.example.ui.components.TwoDoTechLogo
 import com.example.ui.components.CategoryTab
 import com.example.ui.components.CategoryTabBar
 import com.example.ui.components.UsageAnalyticsSection
@@ -70,7 +70,7 @@ fun HomeScreen(
     if (granted) {
       NotificationHelper.sendPushNotification(
         context,
-        "🔔 BBCI Gov & Iqama Alerts Enabled",
+        "🔔 2Do Tech Gov & Iqama Alerts Enabled",
         "You will now receive push notifications for Iqama expiry, Muqeem status updates, and ZATCA announcements."
       )
       notificationStatusMsg = "Push notifications enabled & test alert sent!"
@@ -93,8 +93,8 @@ fun HomeScreen(
           .background(
             brush = Brush.verticalGradient(
               colors = listOf(
-                MaterialTheme.colorScheme.primary,
-                MaterialTheme.colorScheme.primaryContainer
+                Color(0xFF12324A),
+                Color(0xFF0D9488)
               )
             )
           )
@@ -117,25 +117,12 @@ fun HomeScreen(
               Icon(
                 imageVector = Icons.Default.Menu,
                 contentDescription = if (isArabic) "فتح قائمة الفئات" else "Open Categories Drawer",
-                tint = MaterialTheme.colorScheme.onPrimary,
+                tint = Color.White,
                 modifier = Modifier.size(28.dp)
               )
             }
 
-            BBCILogoView(width = 130, height = 65)
-
-            Surface(
-              shape = RoundedCornerShape(4.dp),
-              color = Color(0xFF166534)
-            ) {
-              Text(
-                text = "🇸🇦 KSA",
-                style = MaterialTheme.typography.labelSmall,
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
-              )
-            }
+            TwoDoTechLogo(width = 110, height = 60)
           }
 
           // Top Action Buttons (Language Toggle, AI Chat, Search)
@@ -155,13 +142,13 @@ fun HomeScreen(
                 Icon(
                   imageVector = Icons.Default.Language,
                   contentDescription = "Language",
-                  tint = MaterialTheme.colorScheme.onPrimary,
+                  tint = Color.White,
                   modifier = Modifier.size(14.dp)
                 )
                 Spacer(modifier = Modifier.width(3.dp))
                 Text(
                   text = if (isArabic) "EN" else "عربي",
-                  color = MaterialTheme.colorScheme.onPrimary,
+                  color = Color.White,
                   fontWeight = FontWeight.Bold,
                   style = MaterialTheme.typography.labelSmall
                 )
@@ -177,7 +164,7 @@ fun HomeScreen(
                 Icon(
                   imageVector = Icons.Default.AutoAwesome,
                   contentDescription = "Gemini AI Chat",
-                  tint = MaterialTheme.colorScheme.onPrimary,
+                  tint = Color.White,
                   modifier = Modifier.size(20.dp)
                 )
               }
@@ -192,7 +179,7 @@ fun HomeScreen(
                 Icon(
                   imageVector = Icons.Default.Search,
                   contentDescription = "Search",
-                  tint = MaterialTheme.colorScheme.onPrimary,
+                  tint = Color.White,
                   modifier = Modifier.size(20.dp)
                 )
               }
@@ -200,7 +187,21 @@ fun HomeScreen(
           }
         }
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Text(
+          text = if (isArabic) "خدمات أعمالك، ببساطة." else "Business services, made simple.",
+          style = MaterialTheme.typography.titleLarge,
+          color = Color.White,
+          fontWeight = FontWeight.Bold
+        )
+        Text(
+          text = if (isArabic) "حلول الأعمال والتقنية والامتثال في مكان واحد." else "Business, technology, and compliance in one place.",
+          style = MaterialTheme.typography.bodySmall,
+          color = Color.White.copy(alpha = 0.82f)
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
 
         // Search Bar Bar in Hero
         OutlinedCard(
@@ -223,7 +224,7 @@ fun HomeScreen(
             )
             Spacer(modifier = Modifier.width(12.dp))
             Text(
-              text = if (isArabic) "البحث عن خدمات وزارة الاستثمار، السجل التجاري، زاتكا، مقيم..." else "Search MISA, CR, ZATCA, Muqeem, Cloud...",
+              text = if (isArabic) "ابحث عن خدمات الأعمال والتقنية..." else "Search business, IT, and government services...",
               style = MaterialTheme.typography.bodyMedium,
               color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -486,7 +487,7 @@ fun HomeScreen(
               } else {
                 NotificationHelper.sendPushNotification(
                   context,
-                  "🔔 BBCI Gov & Iqama Alerts",
+                  "🔔 2Do Tech Gov & Iqama Alerts",
                   "Test Alert: All your documents are verified and compliant."
                 )
                 notificationStatusMsg = "Test alert sent!"

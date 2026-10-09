@@ -10,7 +10,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 
 sealed class GatewayScreen(val route: String, val title: String, val icon: androidx.compose.ui.graphics.vector.ImageVector) {
-  object Home : GatewayScreen("home", "Gateway", Icons.Default.Home)
+  object Home : GatewayScreen("home", "Home", Icons.Default.Home)
   object Catalog : GatewayScreen("catalog", "Services", Icons.Default.Search)
   object Requests : GatewayScreen("requests", "Requests", Icons.Default.Assignment)
   object Saved : GatewayScreen("saved", "Saved", Icons.Default.Bookmark)

@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.UserEntity
-import com.example.ui.components.BBCILogoView
+import com.example.ui.components.TwoDoTechLogo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +50,7 @@ fun EditProfileScreen(
         .padding(24.dp),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
-      BBCILogoView(width = 160, height = 80)
+      TwoDoTechLogo(width = 160, height = 80)
 
       Spacer(modifier = Modifier.height(16.dp))
 

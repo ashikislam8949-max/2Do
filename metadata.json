@@ -1,6 +1,6 @@
 {
-  "name": "BBCI",
-  "description": "BBCI - Saudi IT and Government Services Gateway Platform",
+  "name": "2Do Tech",
+  "description": "2Do Tech - Saudi business, technology, and government services platform",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

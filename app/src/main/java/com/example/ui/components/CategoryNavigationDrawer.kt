@@ -68,7 +68,7 @@ fun CategoryDrawerSheet(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
           ) {
-            BBCILogoView(width = 130, height = 65)
+            TwoDoTechLogo(width = 130, height = 65)
 
             Surface(
               shape = RoundedCornerShape(12.dp),
@@ -85,7 +85,7 @@ fun CategoryDrawerSheet(
           }
 
           Text(
-            text = if (isArabic) "بوابة الخدمات التقنية والحكومية" else "GovTech & IT Gateway Platform",
+            text = if (isArabic) "خدمات الأعمال والتقنية" else "Business & Technology Services",
             color = Color.White,
             fontWeight = FontWeight.Bold,
             fontSize = 15.sp
@@ -351,7 +351,7 @@ fun CategoryDrawerSheet(
           verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
           Text(
-            text = "🇸🇦 Official KSA GovTech Gateway",
+            text = "🇸🇦 Saudi business services",
             style = MaterialTheme.typography.labelSmall,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF0A5C36)

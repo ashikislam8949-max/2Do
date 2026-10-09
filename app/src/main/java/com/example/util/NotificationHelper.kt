@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 
 object NotificationHelper {
   private const val CHANNEL_ID = "bbci_gov_alerts_channel"
-  private const val CHANNEL_NAME = "BBCI Government & Iqama Alerts"
+  private const val CHANNEL_NAME = "2Do Tech Government & Iqama Alerts"
   private const val CHANNEL_DESC = "Push notifications for Iqama expiry, service updates, and government portal announcements"
 
   fun createNotificationChannel(context: Context) {

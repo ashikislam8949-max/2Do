@@ -52,7 +52,7 @@ object PersonalDocumentsRepository {
         "Profession" to "Software Engineer",
         "Nationality" to "Pakistani",
         "Religion" to "Muslim",
-        "Sponsor" to "BBCI Information Technology Est."
+        "Sponsor" to "2Do Tech Information Technology Est."
       )
     ),
     PersonalDocument(
@@ -84,15 +84,15 @@ object PersonalDocumentsRepository {
       titleAr = "ترخيص الاستثمار الأجنبي الموحد - وزارة الاستثمار",
       docType = DocumentType.MISA_LICENSE,
       documentNumber = "102031094821",
-      holderNameEn = "BBCI Global Technologies KSA LLC",
-      holderNameAr = "شركة بي بي سي آي للتقنيات العالمية ذ.م.م",
+      holderNameEn = "2Do Tech Global Technologies KSA LLC",
+      holderNameAr = "شركة تو دو تك للتقنيات العالمية ذ.م.م",
       issuingAuthorityEn = "Ministry of Investment (MISA)",
       issuingAuthorityAr = "وزارة الاستثمار • منصة استثمر في السعودية",
       issueDate = "2023-03-15",
       expiryDate = "2028-03-14",
       status = "Active & In Good Standing",
       isExpiringSoon = false,
-      qrData = "MISA:102031094821|COMPANY:BBCI GLOBAL TECH|OWNERSHIP:100% FOREIGN|EXP:2028-03-14",
+      qrData = "MISA:102031094821|COMPANY:2DO TECH GLOBAL|OWNERSHIP:100% FOREIGN|EXP:2028-03-14",
       primaryColorHex = 0xFF4A148C, // MISA Royal Purple
       fields = mapOf(
         "License Type" to "Service & IT Investment (100% Foreign Ownership)",

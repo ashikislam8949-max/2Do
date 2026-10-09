@@ -171,7 +171,7 @@ fun GovPortalCard(
           shape = RoundedCornerShape(10.dp),
           contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
         ) {
-          Text(if (isArabic) "طلب الخدمة عبر BBCI" else "Assisted Processing", fontSize = 12.sp)
+          Text(if (isArabic) "طلب الخدمة عبر 2Do Tech" else "Assisted by 2Do Tech", fontSize = 12.sp)
           Spacer(modifier = Modifier.width(4.dp))
           Icon(Icons.Default.ArrowForward, contentDescription = null, modifier = Modifier.size(14.dp))
         }

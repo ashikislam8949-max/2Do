@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.FragmentActivity
 import com.example.data.UserEntity
-import com.example.ui.components.BBCILogoView
+import com.example.ui.components.TwoDoTechLogo
 import com.example.util.BiometricHelper
 import com.patrykandpatrick.vico.compose.axis.horizontal.rememberBottomAxis
 import com.patrykandpatrick.vico.compose.axis.vertical.rememberStartAxis
@@ -106,7 +106,7 @@ fun ProfileScreen(
         .padding(16.dp),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
-      BBCILogoView(width = 200, height = 95)
+      TwoDoTechLogo(width = 200, height = 95)
       Spacer(modifier = Modifier.height(12.dp))
 
       if (currentUser != null) {
@@ -546,7 +546,7 @@ fun ProfileScreen(
         ProfileMenuItem(
           icon = Icons.Default.Logout,
           title = "Sign Out",
-          subtitle = "Log out from your BBCI account",
+          subtitle = "Log out from your 2Do Tech account",
           onClick = onLogout
         )
       }

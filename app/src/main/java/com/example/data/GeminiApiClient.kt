@@ -36,13 +36,13 @@ object GeminiApiClient {
 
       val systemContext = JSONObject().apply {
         put("role", "user")
-        put("parts", JSONArray().put(JSONObject().put("text", "You are BBCI GovTech AI Assistant, an expert advisor on Saudi Government e-services (ZATCA, Qiwa, Muqeem, MISA, GOSI, Commercial Registration, Enterprise Cloud). Provide professional, helpful, accurate answers in English or Arabic depending on user query.")))
+        put("parts", JSONArray().put(JSONObject().put("text", "You are the 2Do Tech AI Assistant, an expert advisor on Saudi business and government e-services (ZATCA, Qiwa, Muqeem, MISA, GOSI, Commercial Registration, Enterprise Cloud). Provide professional, helpful, accurate answers in English or Arabic depending on user query.")))
       }
       contentsArray.put(systemContext)
 
       val systemResponse = JSONObject().apply {
         put("role", "model")
-        put("parts", JSONArray().put(JSONObject().put("text", "Understood. I am ready to assist BBCI users with Saudi government e-services and enterprise solutions.")))
+        put("parts", JSONArray().put(JSONObject().put("text", "Understood. I am ready to assist 2Do Tech users with Saudi government e-services and enterprise solutions.")))
       }
       contentsArray.put(systemResponse)
 
@@ -96,9 +96,9 @@ object GeminiApiClient {
     val q = query.lowercase()
     return when {
       q.contains("rhq") || q.contains("regional headquarter") ->
-        "🏢 **MISA Regional Headquarters (RHQ) Program**:\nMultinational enterprises establishing their regional HQ in Riyadh receive:\n• 30-year 0% corporate income tax and withholding tax exemptions\n• Unlimited work visas with spouse work authorization\n• Priority eligibility for Saudi government contracts & megaprojects\n• 10-year Saudization exemptions for RHQ executives.\nYou can request RHQ licensing directly via BBCI."
+        "🏢 **MISA Regional Headquarters (RHQ) Program**:\nMultinational enterprises establishing their regional HQ in Riyadh receive:\n• 30-year 0% corporate income tax and withholding tax exemptions\n• Unlimited work visas with spouse work authorization\n• Priority eligibility for Saudi government contracts & megaprojects\n• 10-year Saudization exemptions for RHQ executives.\nYou can request RHQ licensing through the 2Do Tech Services catalog."
       q.contains("misa") || q.contains("foreign investment") || q.contains("investor license") -> 
-        "🏛️ **Saudi Ministry of Investment (MISA) Services**:\n• **100% Foreign Ownership**: Full investor licensing for trading, consulting, IT, services, and contracting.\n• **Startup License**: Zero minimum capital requirement endorsed by venture capital / incubators.\n• **Branch Office**: Direct branch of overseas parent entity.\n• **Executive Visas**: Fast-track Investor Visas and Premium Residency endorsements.\nSubmit your MISA application through BBCI Services catalog!"
+        "🏛️ **Saudi Ministry of Investment (MISA) Services**:\n• **100% Foreign Ownership**: Full investor licensing for trading, consulting, IT, services, and contracting.\n• **Startup License**: Zero minimum capital requirement endorsed by venture capital / incubators.\n• **Branch Office**: Direct branch of overseas parent entity.\n• **Executive Visas**: Fast-track Investor Visas and Premium Residency endorsements.\nSubmit your MISA application through the 2Do Tech Services catalog!"
       q.contains("cr") || q.contains("commercial registration") || q.contains("sbc") || q.contains("سجل") -> 
         "📜 **Saudi Commercial Registration (CR) Services**:\n• **Instant CR Issuance**: Generated within 2-4 hours via Saudi Business Center (SBC) with automated 700 Unified Number and Chamber membership.\n• **Multi-Year Renewal**: 1 to 5-year electronic renewals with instant certificate delivery.\n• **Articles of Association (AoA)**: Electronic drafting and MoJ notary attestation for LLCs.\n• **Sub-CR Branches**: Province-wide expansion across Riyadh, Jeddah, Eastern Province.\n• **Trade Name**: Instant name search and validation."
       q.contains("zatca") || q.contains("invoice") || q.contains("فاتورة") -> 
@@ -108,7 +108,7 @@ object GeminiApiClient {
       q.contains("muqeem") || q.contains("residency") || q.contains("iqama") || q.contains("مقيم") -> 
         "🏛️ **Muqeem Residency Portal**: Muqeem provides automated Iqama renewals, instant exit/re-entry visas, profession amendments, and border control updates for enterprise employees."
       else -> 
-        "🤖 **BBCI AI Assistant**: I can help you with all Saudi government services, MISA foreign investment licensing (RHQ, 100% ownership, startups), and Commercial Registration (CR instant issuance, renewals, AoA, branches). Please select or ask about any service!"
+        "🤖 **2Do Tech AI Assistant**: I can help you with Saudi government services, MISA foreign investment licensing (RHQ, 100% ownership, startups), and Commercial Registration (CR instant issuance, renewals, AoA, branches). Please select or ask about any service!"
     }
   }
 }

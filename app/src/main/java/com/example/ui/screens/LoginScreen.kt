@@ -20,7 +20,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.FragmentActivity
-import com.example.ui.components.BBCILogoView
+import com.example.ui.components.TwoDoTechLogo
 import com.example.util.BiometricHelper
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,7 +42,7 @@ fun LoginScreen(
   Scaffold(
     topBar = {
       TopAppBar(
-        title = { Text("BBCI Enterprise Portal", fontWeight = FontWeight.SemiBold) },
+        title = { Text("2Do Tech Business Portal", fontWeight = FontWeight.SemiBold) },
         navigationIcon = {
           IconButton(onClick = onBackClick) {
             Text("←", fontSize = 20.sp)
@@ -75,7 +75,7 @@ fun LoginScreen(
             .padding(28.dp),
           horizontalAlignment = Alignment.CenterHorizontally
         ) {
-          BBCILogoView(width = 170, height = 85)
+          TwoDoTechLogo(width = 170, height = 85)
           
           Spacer(modifier = Modifier.height(20.dp))
           
@@ -191,7 +191,7 @@ fun LoginScreen(
               if (activity != null) {
                 BiometricHelper.authenticate(
                   activity = activity,
-                  title = "BBCI Biometric Authentication",
+                  title = "2Do Tech Biometric Authentication",
                   subtitle = "Use Fingerprint or Face Unlock for quick secure sign-in",
                   onSuccess = {
                     onLoginSuccess()

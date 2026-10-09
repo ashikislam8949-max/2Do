@@ -1,0 +1,90 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidUserProfile(data) {
+      return data.userId is string && data.userId.size() <= 128 &&
+             data.companyName is string && data.companyName.size() >= 2 && data.companyName.size() <= 100 &&
+             data.crNumber is string && data.crNumber.size() >= 5 && data.crNumber.size() <= 50 &&
+             data.email is string && data.email.size() <= 100 &&
+             (!('createdAt' in data) || data.createdAt is timestamp);
+    }
+
+    function isValidApplicationRecord(data) {
+      return data.applicationId is string && data.applicationId.size() <= 128 &&
+             data.userId is string && data.userId.size() <= 128 &&
+             data.serviceName is string && data.serviceName.size() >= 2 && data.serviceName.size() <= 100 &&
+             data.status is string && data.status.size() <= 50 &&
+             (!('submittedDate' in data) || data.submittedDate is string) &&
+             (!('createdAt' in data) || data.createdAt is timestamp);
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    match /profiles/{userId} {
+      allow get: if isSignedIn() && request.auth.uid == userId;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      
+      allow create: if isSignedIn() &&
+                       request.auth.uid == userId &&
+                       incoming().userId == request.auth.uid &&
+                       incoming().keys().hasAll(['userId', 'companyName', 'crNumber', 'email', 'createdAt']) &&
+                       incoming().keys().hasOnly(['userId', 'companyName', 'crNumber', 'email', 'createdAt', 'updatedAt']) &&
+                       incoming().createdAt is timestamp &&
+                       incoming().createdAt <= request.time &&
+                       isValidUserProfile(incoming());
+
+      allow update: if isSignedIn() &&
+                       request.auth.uid == userId &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       isValidUserProfile(incoming()) &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['companyName', 'crNumber', 'email', 'updatedAt']);
+
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    match /applications/{applicationId} {
+      allow get: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+
+      allow create: if isSignedIn() &&
+                       isValidId(applicationId) &&
+                       incoming().userId == request.auth.uid &&
+                       incoming().applicationId == applicationId &&
+                       incoming().keys().hasAll(['applicationId', 'userId', 'serviceName', 'status', 'createdAt']) &&
+                       incoming().keys().hasOnly(['applicationId', 'userId', 'serviceName', 'status', 'submittedDate', 'createdAt', 'updatedAt']) &&
+                       incoming().createdAt is timestamp &&
+                       incoming().createdAt <= request.time &&
+                       isValidApplicationRecord(incoming());
+
+      allow update: if isSignedIn() &&
+                       resource.data.userId == request.auth.uid &&
+                       incoming().userId == existing().userId &&
+                       incoming().applicationId == existing().applicationId &&
+                       incoming().createdAt == existing().createdAt &&
+                       isValidApplicationRecord(incoming()) &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['serviceName', 'status', 'submittedDate', 'updatedAt']);
+
+      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+  }
+}

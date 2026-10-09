@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "User business and enterprise profile for Saudi government services",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "companyName": { "type": "string" },
+        "crNumber": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "companyName", "crNumber", "email", "createdAt"]
+    },
+    "ApplicationRecord": {
+      "title": "Application Record",
+      "description": "MISA licensing and government service application tracking record",
+      "type": "object",
+      "properties": {
+        "applicationId": { "type": "string" },
+        "userId": { "type": "string" },
+        "serviceName": { "type": "string" },
+        "status": { "type": "string" },
+        "submittedDate": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["applicationId", "userId", "serviceName", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/profiles/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profile document owned by the user"
+    },
+    "/applications/{applicationId}": {
+      "schema": { "$ref": "#/entities/ApplicationRecord" },
+      "description": "MISA licensing applications owned by the user"
+    }
+  }
+}

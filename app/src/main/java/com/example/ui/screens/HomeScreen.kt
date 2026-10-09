@@ -93,8 +93,8 @@ fun HomeScreen(
           .background(
             brush = Brush.verticalGradient(
               colors = listOf(
-                Color(0xFF12324A),
-                Color(0xFF0D9488)
+                Color(0xFF004B29),
+                Color(0xFF006C35)
               )
             )
           )
@@ -190,13 +190,13 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-          text = if (isArabic) "خدمات أعمالك، ببساطة." else "Business services, made simple.",
+          text = if (isArabic) "خدماتك الحكومية، ببساطة." else "Saudi government services, made simple.",
           style = MaterialTheme.typography.titleLarge,
           color = Color.White,
           fontWeight = FontWeight.Bold
         )
         Text(
-          text = if (isArabic) "حلول الأعمال والتقنية والامتثال في مكان واحد." else "Business, technology, and compliance in one place.",
+          text = if (isArabic) "الإقامة والتأشيرات والجوازات وخدمات الأعمال في مكان واحد." else "Residency, visas, Jawazat, and business services in one place.",
           style = MaterialTheme.typography.bodySmall,
           color = Color.White.copy(alpha = 0.82f)
         )
@@ -224,7 +224,7 @@ fun HomeScreen(
             )
             Spacer(modifier = Modifier.width(12.dp))
             Text(
-              text = if (isArabic) "ابحث عن خدمات الأعمال والتقنية..." else "Search business, IT, and government services...",
+              text = if (isArabic) "ابحث عن الإقامة أو التأشيرات أو الجوازات..." else "Search Iqama, visas, Jawazat, and more...",
               style = MaterialTheme.typography.bodyMedium,
               color = MaterialTheme.colorScheme.onSurfaceVariant
             )

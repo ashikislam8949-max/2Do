@@ -46,7 +46,7 @@ class GatewayViewModel(application: Application) : AndroidViewModel(application)
     repository.savedServices.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
   // Main Category Tab Selection (IT Services, E-Gov Portals, Personal Documents)
-  private val _selectedMainCategory = MutableStateFlow(CategoryTab.IT_SERVICES)
+  private val _selectedMainCategory = MutableStateFlow(CategoryTab.GOV_PORTALS)
   val selectedMainCategory: StateFlow<CategoryTab> = _selectedMainCategory.asStateFlow()
 
   fun setSelectedMainCategory(tab: CategoryTab) {

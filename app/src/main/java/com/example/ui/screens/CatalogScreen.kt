@@ -37,6 +37,9 @@ fun CatalogScreen(
     "MISA & Investment",
     "Commercial Registration",
     "Government Services",
+    "Citizen Services",
+    "Iqama & Residency",
+    "Licensing & CR",
     "IT & Cloud",
     "Cybersecurity"
   )

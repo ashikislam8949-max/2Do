@@ -111,6 +111,9 @@ class GatewayViewModel(application: Application) : AndroidViewModel(application)
           "MISA & Investment" -> s.category == "MISA & Investment" || s.title.contains("MISA", ignoreCase = true)
           "Commercial Registration" -> s.category == "Commercial Registration (CR)" || s.title.contains("Commercial Registration", ignoreCase = true) || s.title.contains("CR", ignoreCase = true)
           "Licensing & CR" -> s.category == "Commercial Registration (CR)" || s.category == "Licensing & CR" || s.title.contains("CR", ignoreCase = true) || s.title.contains("License", ignoreCase = true)
+          "Visa & Jawazat" -> listOf("Visa", "Jawazat", "Passport", "Absher").any {
+            s.title.contains(it, ignoreCase = true) || s.description.contains(it, ignoreCase = true)
+          }
           else -> s.category.equals(cat, ignoreCase = true)
         }
         matchesQuery && matchesCat

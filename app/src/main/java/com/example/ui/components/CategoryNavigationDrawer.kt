@@ -85,7 +85,7 @@ fun CategoryDrawerSheet(
           }
 
           Text(
-            text = if (isArabic) "خدمات الأعمال والتقنية" else "Business & Technology Services",
+            text = if (isArabic) "الخدمات الحكومية والإقامة والأعمال" else "Government, residency & business services",
             color = Color.White,
             fontWeight = FontWeight.Bold,
             fontSize = 15.sp

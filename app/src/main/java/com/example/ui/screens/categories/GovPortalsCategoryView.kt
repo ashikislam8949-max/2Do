@@ -16,24 +16,38 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.GovPortal
+import com.example.data.ServiceEntity
 import com.example.data.ServiceRequestEntity
 import com.example.ui.components.GovPortalCard
 import com.example.ui.components.MisaProgressTrackerView
+import com.example.ui.components.ServiceCard
 import com.example.ui.components.UsageAnalyticsSection
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GovPortalsCategoryView(
   portals: List<GovPortal>,
+  services: List<ServiceEntity> = emptyList(),
   isArabic: Boolean = false,
   serviceRequests: List<ServiceRequestEntity> = emptyList(),
   onOpenBranchesMap: () -> Unit = {},
+  onServiceClick: (String) -> Unit = {},
   onPortalServiceClick: (GovPortal) -> Unit = {},
   onNavigateRequests: () -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   var selectedPortalCategory by remember { mutableStateOf("All") }
+  var selectedServiceCategory by remember { mutableStateOf("Iqama & Residency") }
   var searchQuery by remember { mutableStateOf("") }
+  val serviceCategories = listOf(
+    "All services",
+    "Iqama & Residency",
+    "Visa & Jawazat",
+    "Government Services",
+    "Commercial Registration (CR)",
+    "MISA & Investment",
+    "Licensing & CR"
+  )
 
   val portalCategories = listOf(
     "All",
@@ -53,6 +67,28 @@ fun GovPortalsCategoryView(
         p.authorityEn.contains(searchQuery, ignoreCase = true) ||
         p.popularServices.any { it.contains(searchQuery, ignoreCase = true) }
       matchesCat && matchesSearch
+    }
+    val governmentServices = remember(services, selectedServiceCategory, searchQuery) {
+      services.filter { service ->
+        val isGovernmentService = service.category !in listOf("IT & Cloud", "Cybersecurity")
+        val matchesCategory = when (selectedServiceCategory) {
+          "All services" -> true
+          "Iqama & Residency" -> service.category.equals(selectedServiceCategory, ignoreCase = true) ||
+            listOf("iqama", "muqeem", "residency").any {
+              service.title.contains(it, ignoreCase = true) || service.description.contains(it, ignoreCase = true)
+            }
+          "Visa & Jawazat" -> service.category.equals(selectedServiceCategory, ignoreCase = true) ||
+            listOf("visa", "jawazat", "passport", "absher").any {
+              service.title.contains(it, ignoreCase = true) || service.description.contains(it, ignoreCase = true)
+            }
+          else -> service.category.equals(selectedServiceCategory, ignoreCase = true)
+        }
+        val matchesSearch = searchQuery.isBlank() ||
+          service.title.contains(searchQuery, ignoreCase = true) ||
+          service.description.contains(searchQuery, ignoreCase = true) ||
+          service.category.contains(searchQuery, ignoreCase = true)
+        isGovernmentService && matchesCategory && matchesSearch
+      }.sortedByDescending { it.isFeatured }
     }
   }
 
@@ -96,7 +132,7 @@ fun GovPortalsCategoryView(
           )
           Spacer(modifier = Modifier.height(2.dp))
           Text(
-            text = if (isArabic) "ربط مباشر ومعتمد مع أبشر، مقيم، زاتكا، قوى، وبلدي" else "Direct integration & assisted services for Absher, Muqeem, ZATCA, Qiwa & Balady",
+            text = if (isArabic) "إرشادات للوصول إلى أبشر ومقيم وزاتكا وقوى وبلدي" else "Find official services from Absher, Muqeem, ZATCA, Qiwa & Balady",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
           )
@@ -192,6 +228,52 @@ fun GovPortalsCategoryView(
           label = { Text(cat) },
           shape = RoundedCornerShape(8.dp)
         )
+      }
+    }
+
+    Column(
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 16.dp),
+      verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+      Text(
+        text = if (isArabic) "خدمات حكومية وإرشادات (${governmentServices.size})" else "Government services & assistance (${governmentServices.size})",
+        style = MaterialTheme.typography.titleMedium,
+        fontWeight = FontWeight.Bold
+      )
+      Text(
+        text = if (isArabic) "نساعدك في تجهيز الطلبات. الرسوم تقديرية وتؤكد الجهات الرسمية الأهلية والرسوم النهائية." else "Independent application assistance. Fees are estimates; official authorities determine eligibility and government charges.",
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+      )
+      Row(
+        modifier = Modifier.horizontalScroll(rememberScrollState()),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+      ) {
+        serviceCategories.forEach { category ->
+          FilterChip(
+            selected = selectedServiceCategory == category,
+            onClick = { selectedServiceCategory = category },
+            label = { Text(category) },
+            shape = RoundedCornerShape(8.dp)
+          )
+        }
+      }
+      if (governmentServices.isEmpty()) {
+        Text(
+          text = if (isArabic) "لا توجد خدمات مطابقة" else "No matching services found.",
+          color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+      } else {
+        Row(
+          modifier = Modifier.horizontalScroll(rememberScrollState()),
+          horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+          governmentServices.forEach { service ->
+            ServiceCard(service = service, onClick = { onServiceClick(service.id) })
+          }
+        }
       }
     }
 

@@ -260,9 +260,11 @@ fun HomeScreen(
         CategoryTab.GOV_PORTALS -> {
           GovPortalsCategoryView(
             portals = govPortals,
+            services = allServices,
             isArabic = isArabic,
             serviceRequests = serviceRequests,
             onOpenBranchesMap = onOpenBranchesMap,
+            onServiceClick = onServiceClick,
             onNavigateRequests = onNavigateRequests,
             onPortalServiceClick = { portal ->
               val match = allServices.find { it.title.contains(portal.nameEn.take(6), ignoreCase = true) }

@@ -68,28 +68,28 @@ fun GovPortalsCategoryView(
         p.popularServices.any { it.contains(searchQuery, ignoreCase = true) }
       matchesCat && matchesSearch
     }
-    val governmentServices = remember(services, selectedServiceCategory, searchQuery) {
-      services.filter { service ->
-        val isGovernmentService = service.category !in listOf("IT & Cloud", "Cybersecurity")
-        val matchesCategory = when (selectedServiceCategory) {
-          "All services" -> true
-          "Iqama & Residency" -> service.category.equals(selectedServiceCategory, ignoreCase = true) ||
-            listOf("iqama", "muqeem", "residency").any {
-              service.title.contains(it, ignoreCase = true) || service.description.contains(it, ignoreCase = true)
-            }
-          "Visa & Jawazat" -> service.category.equals(selectedServiceCategory, ignoreCase = true) ||
-            listOf("visa", "jawazat", "passport", "absher").any {
-              service.title.contains(it, ignoreCase = true) || service.description.contains(it, ignoreCase = true)
-            }
-          else -> service.category.equals(selectedServiceCategory, ignoreCase = true)
-        }
-        val matchesSearch = searchQuery.isBlank() ||
-          service.title.contains(searchQuery, ignoreCase = true) ||
-          service.description.contains(searchQuery, ignoreCase = true) ||
-          service.category.contains(searchQuery, ignoreCase = true)
-        isGovernmentService && matchesCategory && matchesSearch
-      }.sortedByDescending { it.isFeatured }
-    }
+  }
+  val governmentServices = remember(services, selectedServiceCategory, searchQuery) {
+    services.filter { service ->
+      val isGovernmentService = service.category !in listOf("IT & Cloud", "Cybersecurity")
+      val matchesCategory = when (selectedServiceCategory) {
+        "All services" -> true
+        "Iqama & Residency" -> service.category.equals(selectedServiceCategory, ignoreCase = true) ||
+          listOf("iqama", "muqeem", "residency").any {
+            service.title.contains(it, ignoreCase = true) || service.description.contains(it, ignoreCase = true)
+          }
+        "Visa & Jawazat" -> service.category.equals(selectedServiceCategory, ignoreCase = true) ||
+          listOf("visa", "jawazat", "passport", "absher").any {
+            service.title.contains(it, ignoreCase = true) || service.description.contains(it, ignoreCase = true)
+          }
+        else -> service.category.equals(selectedServiceCategory, ignoreCase = true)
+      }
+      val matchesSearch = searchQuery.isBlank() ||
+        service.title.contains(searchQuery, ignoreCase = true) ||
+        service.description.contains(searchQuery, ignoreCase = true) ||
+        service.category.contains(searchQuery, ignoreCase = true)
+      isGovernmentService && matchesCategory && matchesSearch
+    }.sortedByDescending { it.isFeatured }
   }
 
   Column(

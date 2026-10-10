@@ -281,7 +281,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Expedited annual renewal of MISA foreign investor license through the Ministry of Investment portal, including compliance validation, Saudization ratio audit (Nitaqat), and ZATCA tax clearance certification.",
           requirements = "1. Valid Commercial Registration (CR)\n2. ZATCA Tax & Zakat Compliance Certificate\n3. GOSI & Saudization Certificate (Qiwa)\n4. Annual Audited Financial Balance Sheet",
           isFeatured = true,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "misa_amendment",
@@ -296,7 +296,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Modifying registered commercial activities on MISA investment license, adding new ISIC4 classifications (commercial, software, consulting, contracting), updating capital, and expanding branches across the Kingdom.",
           requirements = "1. Active MISA Foreign Investment License\n2. Shareholder / Board Resolution approving activity additions\n3. Draft Amended Articles of Association (AoA)\n4. Relevant Technical Accreditations if applicable",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "misa_startup",
@@ -311,7 +311,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Fast-track MISA investment license for innovative technology founders and startups endorsed by authorized venture capital funds (SVC) or certified Saudi incubators. Exempt from prior audited financials requirement with zero minimum capital.",
           requirements = "1. Endorsement letter from authorized Saudi incubator or VC fund\n2. Startup Pitch Deck & Product Architecture Overview\n3. Passports of Founding Team\n4. Proof of Prototype or Intellectual Property",
           isFeatured = true,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "misa_branch",
@@ -326,7 +326,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Establishment and licensing of a direct legal branch of an international company in Saudi Arabia without requiring local Saudi equity, allowing direct bidding on sovereign and private contracts.",
           requirements = "1. Parent Company Certificate of Incorporation & Bylaws apostilled by Saudi Embassy\n2. Power of Attorney for Branch General Manager\n3. Audited Financial Statements for last 2 fiscal years\n4. Board Resolution to open Saudi branch",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "misa_industrial",
@@ -341,7 +341,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Specialized MISA license for industrial manufacturing, advanced tech factories, and assembly plants. Includes MODON industrial land allocation facilitation, customs duty exemption on machinery, and SIDF financing eligibility.",
           requirements = "1. Industrial Feasibility Study & Machinery Specifications\n2. Environmental Impact Evaluation (NCEC)\n3. Parent Company Financials & Experience Portfolio\n4. Proposed Plant Location and Power Requirements",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "misa_visa",
@@ -371,7 +371,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Modifying registered enterprise capital on MISA license, transferring equity shares between foreign and domestic shareholders, onboarding global institutional investors, and notarizing updated capital structures.",
           requirements = "1. Extraordinary General Assembly Resolution\n2. Certified Auditor Report on Capital\n3. Bank Capital Transfer / Deposit Certificate\n4. IDs and Passports of new shareholders",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "misa_realestate",
@@ -386,7 +386,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "MISA real estate investment license for foreign corporate entities undertaking property development, residential communities, and commercial real estate projects exceeding 30 Million SAR inside the Kingdom.",
           requirements = "1. Real Estate General Authority (REGA) Clearance\n2. Minimum Project Capital Proof (30M+ SAR)\n3. Land Title Deed (Suk) or Master Development Agreement\n4. Corporate Balance Sheets",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "misa_cancellation",
@@ -401,7 +401,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Official deregistration and cancellation of MISA investment license, managing Umm Al-Qura gazette announcements, liquidator appointment, final tax discharge with ZATCA, and complete exit compliance.",
           requirements = "1. Shareholder Resolution for Liquidation & Liquidator Appointment\n2. Final ZATCA Tax & Zakat Discharge Certificate\n3. GOSI & Qiwa Labor File Closure Letters\n4. Final Audited Liquidation Balance Sheet",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         // ==================== SAUDI CR SERVICES (COMMERCIAL REGISTRATION) ====================
         ServiceEntity(
@@ -447,7 +447,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Amending and expanding economic activities on Commercial Registration in full alignment with ISIC4 classification standards, changing head office location, updating general manager, and capital adjustment.",
           requirements = "1. Active Commercial Registration\n2. Authorized Manager Absher Verification\n3. Regulatory approvals for specialized sectors (SFDA, CST, MoI if required)",
           isFeatured = true,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "cr_tradename",
@@ -477,7 +477,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Issuing secondary/sub-branch Commercial Registration certificates for opening new branches, logistics warehouses, or corporate branch offices across Riyadh, Jeddah, Eastern Province, Neom, and other provinces under the primary establishment.",
           requirements = "1. Valid Primary Main CR\n2. National Address or Ejar Commercial Lease Contract for new branch\n3. Branch Manager Identification",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "cr_aoa",
@@ -507,7 +507,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Complete legal transfer of Commercial Registration ownership or company equity from current owner to a new buyer, with electronic deed attestation, Qiwa labor file transition, and ZATCA tax clearance.",
           requirements = "1. Mutual Electronic Consent of Buyer and Seller via Absher\n2. ZATCA Tax & Zakat Clearance Certificate\n3. GOSI Zero Debt Certificate\n4. Qiwa Employee Transfer Acceptance",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "cr_conversion",
@@ -522,7 +522,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Corporate transformation converting an individual sole proprietorship into a Limited Liability Company (LLC) under the New Saudi Companies Law, shielding personal assets and enabling institutional equity investment.",
           requirements = "1. Certified Financial Balance Sheet\n2. Establishment Asset Evaluation Statement\n3. Draft Articles of Association (AoA)\n4. Partner Identifications and Capital Allocation",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "cr_extract",
@@ -552,7 +552,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Official electronic cancellation and deregistration of primary or branch Commercial Registration (شطب السجل) via SBC, with automated clearance validation from Qiwa, GOSI, Balady, and ZATCA.",
           requirements = "1. Zero Active Workers on Establishment File (Qiwa)\n2. ZATCA Final Tax Clearance Certificate\n3. Balady Municipal Commercial License Cancellation\n4. Chamber of Commerce Membership Clearance",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "cr_chamber",
@@ -567,7 +567,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Annual Chamber of Commerce membership registration (Riyadh, Jeddah, Asharqia Chambers) and electronic document ratification service for commercial agreements, employee certificates, and foreign trade documents.",
           requirements = "1. Valid Commercial Registration\n2. Authorized Signatory Absher Verification\n3. Official Corporate Seal Impression",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         ),
         ServiceEntity(
           id = "cr_700",
@@ -582,7 +582,7 @@ class ServiceRepository(private val db: AppDatabase) {
           description = "Issuing, verifying, and activating the 10-digit National Unified Number (الرقم الموحد 700) linking corporate profiles across ZATCA, Muqeem, Qiwa, GOSI, Balady, and corporate banking platforms.",
           requirements = "1. Approved Commercial Registration or MISA Foreign Investment License\n2. Authorized General Manager National ID / Iqama\n3. National Address Proof",
           isFeatured = false,
-          isPopularGov = false
+          isPopularGov = true
         )
       )
     db.serviceDao().insertAll(initialServices)

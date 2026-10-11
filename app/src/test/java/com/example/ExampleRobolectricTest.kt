@@ -120,12 +120,18 @@ class ExampleRobolectricTest {
       assertTrue(misaServices.isNotEmpty())
       assertTrue(misaServices.any { it.title.contains("Regional Headquarters") || it.title.contains("RHQ") })
       assertTrue(misaServices.any { it.title.contains("Investment License") })
+      assertTrue(misaServices.all { it.isPopularGov })
 
       val crServices = database.serviceDao().getServicesByCategory("Commercial Registration (CR)").first()
       assertTrue(crServices.isNotEmpty())
       assertTrue(crServices.any { it.title.contains("Instant Issuance") })
       assertTrue(crServices.any { it.title.contains("Articles of Association") })
       assertTrue(crServices.any { it.title.contains("Renewal") })
+      assertTrue(crServices.all { it.isPopularGov })
+
+      val residencyServices = database.serviceDao().getServicesByCategory("Iqama & Residency").first()
+      assertTrue(residencyServices.isNotEmpty())
+      assertTrue(residencyServices.all { it.isPopularGov })
     }
 
     database.close()

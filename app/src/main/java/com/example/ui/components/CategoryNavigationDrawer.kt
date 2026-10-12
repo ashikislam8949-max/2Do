@@ -224,6 +224,14 @@ fun CategoryDrawerSheet(
         )
 
         NavigationDrawerItem(
+          label = { Text(if (isArabic) "الإعلانات والتنبيهات" else "Announcements & Alerts") },
+          icon = { Icon(Icons.Default.Notifications, contentDescription = null) },
+          selected = false,
+          onClick = { onNavigateRoute("announcements") },
+          modifier = Modifier.testTag("drawer_nav_announcements")
+        )
+
+        NavigationDrawerItem(
           label = { Text(if (isArabic) "الخدمات المحفوظة" else "Saved Services") },
           icon = { Icon(Icons.Default.Bookmark, contentDescription = null) },
           badge = {

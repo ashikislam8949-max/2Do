@@ -584,7 +584,7 @@ class ServiceRepository(private val db: AppDatabase) {
           isFeatured = false,
           isPopularGov = true
         )
-      )
+      ) + CitizenServiceCatalog.services
     db.serviceDao().insertAll(initialServices)
 
     val initialRequests = listOf(

@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.data.AnnouncementsRepository
 import com.example.ui.components.CategoryDrawerSheet
 import com.example.ui.components.GatewayBottomNavBar
 import com.example.ui.screens.*
@@ -51,6 +52,7 @@ class MainActivity : FragmentActivity() {
       val currentLanguage by viewModel.currentLanguage.collectAsState()
       val isDarkMode by viewModel.isDarkMode.collectAsState()
       val isBiometricUnlocked by viewModel.isBiometricUnlocked.collectAsState()
+      val announcements = AnnouncementsRepository.announcements
 
       val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
       val coroutineScope = rememberCoroutineScope()
@@ -143,6 +145,14 @@ class MainActivity : FragmentActivity() {
 
             composable("chatbot") {
               AiChatScreen(
+                onBackClick = { navController.popBackStack() }
+              )
+            }
+
+            composable("announcements") {
+              AnnouncementsScreen(
+                announcements = announcements,
+                isArabic = currentLanguage == "AR",
                 onBackClick = { navController.popBackStack() }
               )
             }

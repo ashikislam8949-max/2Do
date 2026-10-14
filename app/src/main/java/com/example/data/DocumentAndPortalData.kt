@@ -263,7 +263,7 @@ object GovPortalsRepository {
       descriptionEn = "Comprehensive gateway for corporate expat management, instant exit/re-entry visas, Iqama renewals, and interactive reports.",
       descriptionAr = "البوابة المعتمدة لإدارة إقامات الموظفين، إصدار تأشيرات الخروج والعودة، والتقارير التفاعلية.",
       portalUrl = "https://muqeem.sa",
-      status = "API Connected",
+      status = "Official Portal",
       servicesCount = 45,
       popularServices = listOf("Iqama Instant Renewal", "Exit & Re-Entry Visa", "Transfer of Sponsorship", "Profession Amendment"),
       badgeColorHex = 0xFF1B824E

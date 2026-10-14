@@ -37,6 +37,9 @@ fun CatalogScreen(
     "MISA & Investment",
     "Commercial Registration",
     "Government Services",
+    "Iqama & Residency",
+    "Visa & Jawazat",
+    "Licensing & CR",
     "IT & Cloud",
     "Cybersecurity"
   )
@@ -44,6 +47,9 @@ fun CatalogScreen(
     "MISA License",
     "CR Instant Issuance",
     "CR Renewal",
+    "Iqama Renewal",
+    "Exit & Re-entry Visa",
+    "Jawazat",
     "Regional HQ (RHQ)",
     "AoA Notarization",
     "Trade Name Reservation",

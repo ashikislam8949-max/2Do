@@ -24,7 +24,7 @@ jobs:
       uses: gradle/actions/setup-gradle@v3
 
     - name: Build with Gradle
-      run: gradle assembleDebug
+      run: ./gradlew assembleDebug
 
     - name: Run Unit Tests
-      run: gradle testDebugUnitTest
+      run: ./gradlew testDebugUnitTest

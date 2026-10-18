@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
+    <!-- Database id from the BBCI AI Studio Firebase project. Not read by app code today. -->
     <string name="firestore_database_id" translatable="false">ai-studio-android-bbci-90700da5-1de1-4eab-8fef-a56c2a280358</string>
 </resources>

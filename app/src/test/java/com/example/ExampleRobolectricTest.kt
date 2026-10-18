@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import kotlinx.coroutines.flow.first
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,7 +19,7 @@ class ExampleRobolectricTest {
   fun `read string from context`() {
     val context = ApplicationProvider.getApplicationContext<Context>()
     val appName = context.getString(R.string.app_name)
-    assertEquals("2Do Tech", appName)
+    assertEquals("2Do Saudi Services", appName)
   }
 
   @Test
@@ -135,5 +136,41 @@ class ExampleRobolectricTest {
     }
 
     database.close()
+  }
+
+  @Test
+  fun `document classifier does not call gemini when firebase is absent`() {
+    kotlinx.coroutines.runBlocking {
+      val result = com.example.util.AiDocumentClassifier.classifyDocument("Passport scan", "Iqama")
+      assertEquals("Other", result["category"])
+      assertEquals("Classification is unavailable.", result["summary"])
+      assertTrue(result.values.none { value -> value.contains("API key") || value.contains("AIza") })
+    }
+  }
+
+  @Test
+  fun `classification parser reads fenced json`() {
+    val parsed = com.example.util.parseClassificationJson(
+      """
+      ```json
+      {"category":"Passports","tags":"Iqama, Travel","summary":"A passport scan."}
+      ```
+      """.trimIndent()
+    )
+    assertEquals("Passports", parsed?.get("category"))
+    assertEquals("Iqama, Travel", parsed?.get("tags"))
+    assertEquals("A passport scan.", parsed?.get("summary"))
+  }
+
+  @Test
+  fun `chat uses the local fallback when firebase is absent`() {
+    kotlinx.coroutines.runBlocking {
+      val text = com.example.data.GeminiApiClient.sendMessage(
+        "What is a MISA license?",
+        emptyList<Pair<String, String>>()
+      )
+      assertTrue(text.contains("MISA"))
+      assertFalse(text.contains("GEMINI_API_KEY"))
+    }
   }
 }

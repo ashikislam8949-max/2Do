@@ -2,40 +2,76 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.google.devtools.ksp)
-  alias(libs.plugins.secrets)
-  alias(libs.plugins.google.services)
+  alias(libs.plugins.google.services) apply false
 }
 
+// Release signing reads the environment only. Nothing in the repo is a default keystore.
+val keystorePath = providers.environmentVariable("KEYSTORE_PATH").orNull?.trim().orEmpty()
+val storePasswordEnv = providers.environmentVariable("STORE_PASSWORD").orNull
+val keyPasswordEnv = providers.environmentVariable("KEY_PASSWORD").orNull
+val keystoreFile = keystorePath.takeIf { it.isNotEmpty() }?.let { file(it) }
+val releaseSigningReady =
+  keystoreFile != null &&
+    keystoreFile.isFile &&
+    !storePasswordEnv.isNullOrBlank() &&
+    !keyPasswordEnv.isNullOrBlank()
+val releaseSigningRequested =
+  keystorePath.isNotEmpty() ||
+    !storePasswordEnv.isNullOrBlank() ||
+    !keyPasswordEnv.isNullOrBlank()
+
+if (releaseSigningRequested && !releaseSigningReady) {
+  val problems = buildList {
+    if (keystorePath.isEmpty()) add("KEYSTORE_PATH is not set")
+    else if (keystoreFile == null || !keystoreFile.isFile) add("KEYSTORE_PATH is not an existing file")
+    if (storePasswordEnv.isNullOrBlank()) add("STORE_PASSWORD is not set")
+    if (keyPasswordEnv.isNullOrBlank()) add("KEY_PASSWORD is not set")
+  }
+  error(
+    "Release signing is incomplete (${problems.joinToString("; ")}). " +
+      "Set KEYSTORE_PATH, STORE_PASSWORD, and KEY_PASSWORD together. The key alias is \"upload\"."
+  )
+}
+
+val releaseVersionCode =
+  providers.environmentVariable("GITHUB_RUN_NUMBER").orNull?.toIntOrNull() ?: 1
+val releaseVersionName =
+  providers.environmentVariable("VERSION_NAME").orNull?.trim()?.takeIf { it.isNotEmpty() } ?: "1.0"
+
 android {
+  // Namespace stays com.example. applicationId is the Play / Firebase package.
   namespace = "com.example"
   compileSdk { version = release(36) { minorApiLevel = 1 } }
 
   defaultConfig {
-    applicationId = "com.example"
+    applicationId = "sa.sbtech.todo"
     minSdk = 24
     targetSdk = 36
-    versionCode = 1
-    versionName = "1.0"
+    versionCode = releaseVersionCode
+    versionName = releaseVersionName
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
-  signingConfigs {
-    create("release") {
-      val keystorePath = System.getenv("KEYSTORE_PATH") ?: "${rootDir}/my-upload-key.jks"
-      storeFile = file(keystorePath)
-      storePassword = System.getenv("STORE_PASSWORD")
-      keyAlias = "upload"
-      keyPassword = System.getenv("KEY_PASSWORD")
+  if (releaseSigningReady && keystoreFile != null) {
+    signingConfigs {
+      create("release") {
+        storeFile = keystoreFile
+        storePassword = storePasswordEnv
+        keyAlias = "upload"
+        keyPassword = keyPasswordEnv
+      }
     }
   }
 
   buildTypes {
     release {
       isCrunchPngs = false
-      isMinifyEnabled = false
+      isMinifyEnabled = true
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-      signingConfig = signingConfigs.getByName("release")
+      if (releaseSigningReady) {
+        signingConfig = signingConfigs.getByName("release")
+      }
     }
   }
   compileOptions {
@@ -53,10 +89,17 @@ android {
   }
 }
 
-secrets {
-  propertiesFileName = ".env"
-  defaultPropertiesFileName = ".env.example"
-  ignoreList.add("FIREBASE_APPCHECK_DEBUG_TOKEN")
+// assembleRelease / bundleRelease both depend on this task. Debug builds do not.
+tasks.configureEach {
+  if (name == "preReleaseBuild" && !releaseSigningReady) {
+    doFirst {
+      error(
+        "Refusing to build the release variant without signing secrets. " +
+          "Set KEYSTORE_PATH, STORE_PASSWORD, and KEY_PASSWORD (key alias \"upload\"). " +
+          "Debug builds do not need a keystore."
+      )
+    }
+  }
 }
 
 dependencies {
@@ -90,6 +133,9 @@ dependencies {
   implementation(platform(libs.firebase.bom))
   implementation(libs.firebase.firestore)
   implementation(libs.firebase.auth)
+  implementation(libs.firebase.ai)
+  implementation(libs.firebase.appcheck.playintegrity)
+  debugImplementation(libs.firebase.appcheck.debug)
   implementation(libs.androidx.credentials)
   implementation(libs.androidx.credentials.play.services)
   implementation(libs.googleid)
@@ -108,4 +154,10 @@ dependencies {
   debugImplementation(libs.androidx.compose.ui.tooling)
   "ksp"(libs.androidx.room.compiler)
   "ksp"(libs.moshi.kotlin.codegen)
+}
+
+// Optional at build time. Place the file at app/google-services.json (gitignored).
+// CI writes it from the GOOGLE_SERVICES_JSON secret; do not commit it.
+if (file("google-services.json").exists()) {
+  apply(plugin = "com.google.gms.google-services")
 }
